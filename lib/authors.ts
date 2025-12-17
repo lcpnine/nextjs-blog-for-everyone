@@ -1,29 +1,24 @@
 import { Author } from "./types"
 
 const authors: Record<string, Author> = {
-  "john-doe": {
-    id: "john-doe",
-    name: "John Doe",
-    bio: "Full-stack developer passionate about web technologies and open source.",
-    avatar: "/images/authors/john-doe.jpg",
+  "amey-pathak": {
+    id: "ap425q",
+    name: "Amey Pathak",
+    bio: "Security researcher and blogger sharing insights on cybersecurity and technology.",
+    avatar: "/images/authors/amey.jpeg",
     social: {
-      twitter: "johndoe",
-      github: "johndoe",
-      website: "https://johndoe.com",
+      linkedin: "https://www.linkedin.com/in/amey-pathak/",
     },
   },
-  "jane-smith": {
-    id: "jane-smith",
-    name: "Jane Smith",
-    bio: "Tech writer and software engineer with a focus on developer experience.",
-    avatar: "/images/authors/jane-smith.jpg",
+  "tanu-chauhan": {
+    id: "tanu-chauhan",
+    name: "Tanu Chauhan",
+    bio: "Contributor to cybersecurity research and technical writing.",
+    avatar: "/images/authors/tanu.jpg",
     social: {
-      twitter: "janesmith",
-      github: "janesmith",
-      linkedin: "janesmith",
+      linkedin: "https://www.linkedin.com/in/tanu-chauhan-741b01230/",
     },
   },
-  // Add more authors here
 }
 
 export function getAuthor(id: string): Author | undefined {
