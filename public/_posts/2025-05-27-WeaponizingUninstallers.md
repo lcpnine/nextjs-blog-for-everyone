@@ -5,8 +5,6 @@ date: "2025-05-27"
 published: true
 authors: [Amey, Tanu]
 tags: [Security, Malware, Research]
-image: "/images/posts/Uninstall-7zip.png"
-imageAlt: "7-Zip Uninstall Dialog"
 featured: true
 ---
 ## Backstory
