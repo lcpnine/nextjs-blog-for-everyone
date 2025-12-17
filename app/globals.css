@@ -9,7 +9,7 @@
   --color-accent: #f59e0b;
 
   --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
   --color-text: #1e293b;
   --color-text-secondary: #64748b;
   --color-border: #e2e8f0;
@@ -32,7 +32,7 @@
 /* Light mode class override */
 .light {
   --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
   --color-text: #1e293b;
   --color-text-secondary: #64748b;
   --color-border: #e2e8f0;
@@ -61,8 +61,32 @@ body {
   --tw-prose-body: var(--color-text);
   --tw-prose-headings: var(--color-text);
   --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text);
   --tw-prose-code: var(--color-text);
   --tw-prose-pre-bg: var(--color-bg-secondary);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--color-text-secondary);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
+
+/* Ensure bold and strong text are clearly visible */
+.prose strong,
+.prose b {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+/* Ensure all headings are clearly visible */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--color-text);
+  font-weight: 700;
 }
 
 .prose a {
@@ -74,24 +98,37 @@ body {
   color: var(--color-primary-dark);
 }
 
+/* Inline code styling */
 .prose code {
   background-color: var(--color-bg-secondary);
+  color: var(--color-text);
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-size: 0.875em;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
 }
 
 .prose pre code {
   background-color: transparent;
   padding: 0;
+  border: none;
+  font-weight: 400;
 }
 
-/* Code highlighting */
+/* Code block styling */
 .prose pre {
   background-color: var(--color-bg-secondary);
+  color: var(--color-text);
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   overflow-x: auto;
+}
+
+/* Ensure code block content is visible */
+.prose pre code,
+.prose pre code * {
+  color: var(--color-text) !important;
 }
 
 /* Custom scrollbar */
