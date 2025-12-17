@@ -20,6 +20,7 @@ export interface PostFrontmatter {
   image?: string
   imageAlt?: string
   draft?: boolean
+  published?: boolean
   featured?: boolean
   layout?: "default" | "wide" | "full"
 }

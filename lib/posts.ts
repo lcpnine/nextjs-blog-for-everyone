@@ -36,6 +36,11 @@ export function getPostBySlug(slug: string): Post | null {
     return null
   }
 
+  // Skip unpublished posts
+  if (frontmatter.published === false) {
+    return null
+  }
+
   return {
     ...frontmatter,
     slug: realSlug,
