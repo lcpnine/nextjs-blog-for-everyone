@@ -13,9 +13,10 @@ export interface Author {
 
 export interface PostFrontmatter {
   title: string
-  description: string
-  date: string
-  author: string
+  description?: string
+  date?: string
+  author?: string
+  authors?: string[]
   tags?: string[]
   image?: string
   imageAlt?: string
@@ -29,6 +30,9 @@ export interface Post extends PostFrontmatter {
   slug: string
   content: string
   readingTime: number
+  date: string
+  description: string
+  authors: string[]
 }
 
 export interface BlogConfig {

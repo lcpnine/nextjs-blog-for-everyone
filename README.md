@@ -93,7 +93,24 @@ const config: BlogConfig = {
 
 ### Adding Authors (`lib/authors.ts`)
 
-Add authors to `lib/authors.ts`:
+#### 1. Add Author Picture
+
+First, add the author's picture to the `public/images/authors/` directory:
+
+```bash
+# Copy your author image to the authors directory
+cp path/to/your-image.jpg public/images/authors/your-name.jpg
+# or .jpeg, .png, etc.
+```
+
+**Recommended image specifications:**
+- Format: JPG, PNG, or WEBP
+- Size: 200x200px to 400x400px (square)
+- File size: Keep under 100KB for optimal performance
+
+#### 2. Add Author to `lib/authors.ts`
+
+Add the new author to the authors object in `lib/authors.ts`:
 
 ```typescript
 const authors: Record<string, Author> = {
@@ -101,7 +118,7 @@ const authors: Record<string, Author> = {
     id: "your-id",
     name: "Your Name",
     bio: "Your bio here",
-    avatar: "/images/authors/your-avatar.jpg",
+    avatar: "/images/authors/your-name.jpg",
     social: {
       twitter: "yourtwitter",
       github: "yourgithub",
@@ -111,6 +128,41 @@ const authors: Record<string, Author> = {
   },
 };
 ```
+
+#### 3. Add Author Aliases (Optional)
+
+For easier referencing in blog posts, add aliases to the `authorAliases` object:
+
+```typescript
+const authorAliases: Record<string, string> = {
+  "your-nickname": "your-id",
+  "your name": "your-id",
+};
+```
+
+This allows you to reference authors by their nickname or full name in blog post frontmatter.
+
+#### 4. Using Multiple Authors in Posts
+
+You can assign multiple authors to a single post:
+
+```yaml
+---
+title: "Collaborative Post"
+authors: [john-doe, jane-smith]
+---
+```
+
+Or use a single author:
+
+```yaml
+---
+title: "Solo Post"
+authors: [john-doe]
+---
+```
+
+The blog will automatically display all authors with their pictures and names.
 
 ### Setting Up Giscus Comments
 
@@ -195,7 +247,7 @@ public/_posts/my-new-post.md
 title: "My New Post"
 description: "A brief description for SEO"
 date: "2024-12-15"
-author: "john-doe"
+authors: ["john-doe"]
 tags: ["tag1", "tag2"]
 image: "/images/posts/my-post.jpg"
 imageAlt: "Description of the image"
@@ -223,15 +275,19 @@ const code = "highlighted";
 | Option | Type | Required | Description |
 |--------|------|----------|-------------|
 | `title` | string | Yes | Post title |
-| `description` | string | Yes | Brief description for SEO (< 160 chars) |
-| `date` | string | Yes | Publication date (YYYY-MM-DD) |
-| `author` | string | No | Author ID from `lib/authors.ts` |
+| `description` | string | No* | Brief description for SEO (< 160 chars). Auto-generated if not provided. |
+| `date` | string | No* | Publication date (YYYY-MM-DD). Extracted from filename if not provided. |
+| `authors` | string[] | No | Array of author IDs from `lib/authors.ts`. Supports multiple authors. |
 | `tags` | string[] | No | Array of tags for categorization |
 | `image` | string | No | Featured image path |
 | `imageAlt` | string | No | Alt text for the image |
 | `featured` | boolean | No | Show in featured section |
 | `draft` | boolean | No | Hide from production build |
 | `layout` | string | No | `"default"`, `"wide"`, or `"full"` |
+
+**Note:** Fields marked with * are optional and auto-generated if not provided:
+- `description`: First 160 characters of content (with markdown removed)
+- `date`: Extracted from filename (format: `YYYY-MM-DD-Title.md`)
 
 ### Post Layouts
 

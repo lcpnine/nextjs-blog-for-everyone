@@ -9,7 +9,9 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post, featured = false }: PostCardProps) {
-  const author = getAuthor(post.author)
+  const authors = post.authors
+    .map((authorId) => getAuthor(authorId))
+    .filter(Boolean)
 
   return (
     <article
@@ -59,19 +61,37 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
             {post.description}
           </p>
 
-          <div className="mt-4 flex items-center gap-3">
-            {author && (
+          <div className="mt-4 flex items-center gap-3 flex-wrap">
+            {authors.length > 0 && (
               <>
-                <Image
-                  src={author.avatar}
-                  alt={author.name}
-                  width={32}
-                  height={32}
-                  className="rounded-full"
-                />
-                <span className="text-sm font-medium text-[var(--color-text)]">
-                  {author.name}
-                </span>
+                <div className="flex items-center gap-2">
+                  {authors.map((author, index) => (
+                    <div
+                      key={author?.id || index}
+                      className="flex items-center gap-2"
+                    >
+                      {author && (
+                        <>
+                          <Image
+                            src={author.avatar}
+                            alt={author.name}
+                            width={32}
+                            height={32}
+                            className="rounded-full"
+                          />
+                          <span className="text-sm font-medium text-[var(--color-text)]">
+                            {author.name}
+                          </span>
+                          {index < authors.length - 1 && (
+                            <span className="text-[var(--color-text-secondary)]">
+                              &
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </div>
                 <span className="text-[var(--color-text-secondary)]">·</span>
               </>
             )}

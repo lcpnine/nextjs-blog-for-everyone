@@ -39,7 +39,9 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound()
   }
 
-  const author = getAuthor(post.author)
+  const authors = post.authors
+    .map((authorId) => getAuthor(authorId))
+    .filter(Boolean)
   const relatedPosts = getRelatedPosts(post, 3)
 
   const blogPostingSchema = generateBlogPostingSchema(post)
@@ -105,34 +107,52 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.description}
           </p>
 
-          <div className="mt-6 flex items-center gap-4">
-            {author && (
-              <>
-                <Image
-                  src={author.avatar}
-                  alt={author.name}
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-                <div>
-                  <p className="font-medium text-[var(--color-text)]">
-                    {author.name}
-                  </p>
-                  <p className="text-sm text-[var(--color-text-secondary)]">
-                    <time dateTime={post.date}>
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
-                    <span className="mx-2">·</span>
-                    {post.readingTime} min read
-                  </p>
-                </div>
-              </>
+          <div className="mt-6 flex items-start gap-4 flex-wrap">
+            {authors.length > 0 && (
+              <div className="flex items-center gap-3">
+                {authors.map((author, index) => (
+                  <div
+                    key={author?.id || index}
+                    className="flex items-center gap-3"
+                  >
+                    {author && (
+                      <>
+                        <Image
+                          src={author.avatar}
+                          alt={author.name}
+                          width={48}
+                          height={48}
+                          className="rounded-full"
+                        />
+                        <div>
+                          <p className="font-medium text-[var(--color-text)]">
+                            {author.name}
+                          </p>
+                        </div>
+                      </>
+                    )}
+                    {index < authors.length - 1 && (
+                      <span className="text-[var(--color-text-secondary)] font-medium">
+                        &
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             )}
+            <div className="flex-1 min-w-[200px]">
+              <p className="text-sm text-[var(--color-text-secondary)]">
+                <time dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+                <span className="mx-2">·</span>
+                {post.readingTime} min read
+              </p>
+            </div>
           </div>
         </header>
 
@@ -155,12 +175,17 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         {/* Author Bio */}
-        {author && (
+        {authors.length > 0 && (
           <div className="mt-16">
             <h2 className="mb-4 text-lg font-semibold text-[var(--color-text)]">
-              About the author
+              {authors.length > 1 ? "About the authors" : "About the author"}
             </h2>
-            <AuthorCard author={author} />
+            <div className="space-y-4">
+              {authors.map(
+                (author) =>
+                  author && <AuthorCard key={author.id} author={author} />
+              )}
+            </div>
           </div>
         )}
 

@@ -41,11 +41,40 @@ export function getPostBySlug(slug: string): Post | null {
     return null
   }
 
+  // Extract date from filename if not in frontmatter (format: YYYY-MM-DD-Title.md)
+  let postDate = frontmatter.date
+  if (!postDate) {
+    const dateMatch = realSlug.match(/^(\d{4}-\d{2}-\d{2})/)
+    if (dateMatch) {
+      postDate = dateMatch[1]
+    }
+  }
+
+  // Handle both single author and multiple authors
+  let authors: string[] = []
+  if (frontmatter.authors && Array.isArray(frontmatter.authors)) {
+    authors = frontmatter.authors
+  } else if (frontmatter.author) {
+    authors = [frontmatter.author]
+  } else {
+    authors = [config.defaultAuthor]
+  }
+
+  // Generate description from content if not provided
+  const description =
+    frontmatter.description ||
+    content
+      .slice(0, 160)
+      .replace(/[#*`\n]/g, " ")
+      .trim() + "..."
+
   return {
     ...frontmatter,
     slug: realSlug,
     content,
-    author: frontmatter.author || config.defaultAuthor,
+    date: postDate || new Date().toISOString().split("T")[0],
+    description,
+    authors,
     readingTime: calculateReadingTime(content),
   }
 }
@@ -65,7 +94,7 @@ export function getFeaturedPosts(): Post[] {
 }
 
 export function getPostsByAuthor(authorId: string): Post[] {
-  return getAllPosts().filter((post) => post.author === authorId)
+  return getAllPosts().filter((post) => post.authors.includes(authorId))
 }
 
 export function getPostsByTag(tag: string): Post[] {

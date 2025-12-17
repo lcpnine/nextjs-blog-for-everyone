@@ -2,7 +2,7 @@ import { Author } from "./types"
 
 const authors: Record<string, Author> = {
   "amey-pathak": {
-    id: "ap425q",
+    id: "amey-pathak",
     name: "Amey Pathak",
     bio: "Security researcher and blogger sharing insights on cybersecurity and technology.",
     avatar: "/images/authors/amey.jpeg",
@@ -14,15 +14,40 @@ const authors: Record<string, Author> = {
     id: "tanu-chauhan",
     name: "Tanu Chauhan",
     bio: "Contributor to cybersecurity research and technical writing.",
-    avatar: "/images/authors/tanu.jpg",
+    avatar: "/images/authors/tanu.jpeg",
     social: {
       linkedin: "https://www.linkedin.com/in/tanu-chauhan-741b01230/",
     },
   },
 }
 
+// Alias mapping for easier lookup (case-insensitive)
+const authorAliases: Record<string, string> = {
+  amey: "amey-pathak",
+  "amey pathak": "amey-pathak",
+  ap425q: "amey-pathak",
+  tanu: "tanu-chauhan",
+  "tanu chauhan": "tanu-chauhan",
+}
+
 export function getAuthor(id: string): Author | undefined {
-  return authors[id]
+  if (!id) return undefined
+
+  // Normalize the input
+  const normalizedId = id.toLowerCase().trim()
+
+  // Try direct lookup first
+  if (authors[normalizedId]) {
+    return authors[normalizedId]
+  }
+
+  // Try alias lookup
+  const aliasedId = authorAliases[normalizedId]
+  if (aliasedId && authors[aliasedId]) {
+    return authors[aliasedId]
+  }
+
+  return undefined
 }
 
 export function getAllAuthors(): Author[] {
