@@ -353,6 +353,16 @@ Every page generates:
 - Canonical URL
 - robots directives
 
+### Default OG Image Support
+
+The template automatically supports multiple image formats for the default OpenGraph image:
+- `og-default.jpg` (preferred)
+- `og-default.jpeg`
+- `og-default.png`
+- `og-default.webp`
+
+Place your default OG image in `public/images/` with one of these names. The system will automatically use the available format.
+
 ### Schema.org Markup
 
 Structured data for:

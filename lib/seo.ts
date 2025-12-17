@@ -33,7 +33,9 @@ export function generateMetadata(options: GenerateMetadataOptions): Metadata {
     ? `${title} | ${config.site.title}`
     : config.site.title
   const url = `${config.site.url}${path}`
-  const ogImage = image || `${config.site.url}/images/og-default.png`
+  // Support multiple formats for default OG image (jpg, jpeg, png, webp)
+  // The system will use the first available format
+  const ogImage = image || `${config.site.url}/images/og-default.jpg`
 
   const metadata: Metadata = {
     title: fullTitle,
