@@ -114,25 +114,69 @@ const authors: Record<string, Author> = {
 
 ### Setting Up Giscus Comments
 
-1. Go to [giscus.app](https://giscus.app/)
-2. Enter your GitHub repository (must be public)
-3. Choose your settings
-4. Copy the configuration values to `blog.config.ts`:
+> **Note for Jekyll Users**  
+> If you're migrating from Jekyll, remove any existing comment includes like `{% include comment.html %}` from your layouts. This Next.js template uses a React-based Giscus component instead.
 
-```typescript
-giscus: {
-  repo: "username/repo",
-  repoId: "R_xxxxx",
-  category: "Announcements",
-  categoryId: "DIC_xxxxx",
-  mapping: "pathname",
-  reactionsEnabled: true,
-  emitMetadata: false,
-  inputPosition: "bottom",
-  theme: "preferred_color_scheme",
-  lang: "en",
-},
-```
+1. **Visit [https://giscus.app/](https://giscus.app/)**
+
+2. **Configure your settings on the giscus website:**
+   - Enter your GitHub repository (must be public)
+   - Make sure the giscus app is installed on your repository
+   - Enable Discussions in your repository settings
+   - Choose your preferred category (Announcements recommended)
+   - Select your mapping option (pathname recommended)
+   - Configure features (reactions, metadata, etc.)
+   - Choose your theme and language
+
+3. **Copy the generated script values**  
+   The site will generate a `<script>` tag like this:
+   
+   ```html
+   <script src="https://giscus.app/client.js"
+           data-repo="username/repo"
+           data-repo-id="R_xxxxx"
+           data-category="Announcements"
+           data-category-id="DIC_xxxxx"
+           data-mapping="pathname"
+           data-strict="0"
+           data-reactions-enabled="1"
+           data-emit-metadata="0"
+           data-input-position="bottom"
+           data-theme="preferred_color_scheme"
+           data-lang="en"
+           crossorigin="anonymous"
+           async>
+   </script>
+   ```
+
+4. **Update `blog.config.ts` with your values**  
+   You **don't need to add the script tag** to your site. Instead, just update the giscus configuration in `blog.config.ts`:
+
+   ```typescript
+   giscus: {
+     repo: "username/repo",              // from data-repo
+     repoId: "R_xxxxx",                  // from data-repo-id
+     category: "Announcements",          // from data-category
+     categoryId: "DIC_xxxxx",            // from data-category-id
+     mapping: "pathname",                // from data-mapping
+     reactionsEnabled: true,             // true if data-reactions-enabled="1"
+     emitMetadata: false,                // true if data-emit-metadata="1"
+     inputPosition: "bottom",            // from data-input-position
+     theme: "preferred_color_scheme",    // from data-theme
+     lang: "en",                         // from data-lang
+   },
+   ```
+
+5. **Enable comments in features**
+   
+   ```typescript
+   features: {
+     comments: true,  // Make sure this is true
+     // ... other features
+   },
+   ```
+
+That's it! Comments will now appear at the bottom of each blog post.
 
 ## Writing Posts
 
