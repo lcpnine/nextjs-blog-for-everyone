@@ -1,11 +1,29 @@
+import fs from "fs"
+import path from "path"
 import { Author } from "./types"
+
+// Helper function to find author avatar with any supported extension
+function findAuthorAvatar(authorId: string): string {
+  const extensions = ["jpg", "jpeg", "png", "webp", "gif", "svg"]
+  const authorsDir = path.join(process.cwd(), "public", "images", "authors")
+
+  for (const ext of extensions) {
+    const filePath = path.join(authorsDir, `${authorId}.${ext}`)
+    if (fs.existsSync(filePath)) {
+      return `/images/authors/${authorId}.${ext}`
+    }
+  }
+
+  // Fallback to default avatar or return a placeholder
+  return "/images/authors/default-avatar.jpg"
+}
 
 const authors: Record<string, Author> = {
   "john-doe": {
     id: "john-doe",
     name: "John Doe",
     bio: "Full-stack developer passionate about web technologies and open source.",
-    avatar: "/images/authors/john-doe.jpg",
+    avatar: findAuthorAvatar("john-doe"),
     social: {
       twitter: "johndoe",
       github: "johndoe",
@@ -16,7 +34,7 @@ const authors: Record<string, Author> = {
     id: "jane-smith",
     name: "Jane Smith",
     bio: "Tech writer and software engineer with a focus on developer experience.",
-    avatar: "/images/authors/jane-smith.jpg",
+    avatar: findAuthorAvatar("jane-smith"),
     social: {
       twitter: "janesmith",
       github: "janesmith",
