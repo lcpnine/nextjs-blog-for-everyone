@@ -15,27 +15,39 @@ export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-16">
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-[var(--color-text)]">About</h1>
-        <p className="mt-4 text-xl text-[var(--color-text-secondary)]">
+        <h1 className="text-4xl font-bold text-(--color-text)">About</h1>
+        <p className="mt-4 text-xl text-(--color-text-secondary)">
           {config.site.description}
         </p>
       </header>
 
       <section className="prose prose-lg max-w-none dark:prose-invert">
-        <p>
-          Welcome to {config.site.title}! This is a blog about technology,
-          programming, and all things interesting. We share insights, tutorials,
-          and thoughts on the latest trends in the tech world.
-        </p>
+        <h3>Hi There 👋👋</h3>
 
-        <h2>Our Mission</h2>
-        <p>
-          Our mission is to share knowledge and help developers grow. We believe
-          in open source, continuous learning, and building a supportive
-          community.
-        </p>
+        <h4>$ Whoami</h4>
+        <ul>
+          <li>A Passionate Security Researcher.</li>
+          <li>
+            <strong>OSED</strong> and <strong>PNPT</strong> Certified.
+          </li>
+          <li>
+            Enjoy learning <strong>Exploit Development</strong>,{" "}
+            <strong>Malware Analysis</strong> and{" "}
+            <strong>Reverse Engineering</strong>.
+          </li>
+        </ul>
 
-        <h2>Meet the Team</h2>
+        <h4>$ What am I doing?</h4>
+        <ul>
+          <li>
+            🎓 Studying <strong>MSCS</strong> at <strong>NTU Singapore</strong>.
+          </li>
+          <li>
+            📚 Currently learning about <strong>AI in Security</strong>.
+          </li>
+        </ul>
+
+        <p>Feel free to contact me with any questions!</p>
       </section>
 
       {/* Authors Grid */}
