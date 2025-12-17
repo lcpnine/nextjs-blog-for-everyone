@@ -39,7 +39,7 @@ const config: BlogConfig = {
     emitMetadata: false,
     inputPosition: "bottom",
     theme: "preferred_color_scheme",
-    lang: "ko",
+    lang: "en",
   },
 
   // Posts per page for pagination
