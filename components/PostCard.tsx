@@ -72,18 +72,19 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
                     >
                       {author && (
                         <>
-                          <Image
-                            src={author.avatar}
-                            alt={author.name}
-                            width={32}
-                            height={32}
-                            className="rounded-full"
-                          />
+                          <div className="relative h-8 w-8 flex-shrink-0">
+                            <Image
+                              src={author.avatar}
+                              alt={author.name}
+                              fill
+                              className="rounded-full object-cover"
+                            />
+                          </div>
                           <span className="text-sm font-medium text-[var(--color-text)]">
                             {author.name}
                           </span>
                           {index < authors.length - 1 && (
-                            <span className="text-[var(--color-text-secondary)]">
+                            <span className="text-sm text-[var(--color-text-secondary)]">
                               &
                             </span>
                           )}
@@ -92,7 +93,9 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
                     </div>
                   ))}
                 </div>
-                <span className="text-[var(--color-text-secondary)]">·</span>
+                <span className="text-sm text-[var(--color-text-secondary)]">
+                  ·
+                </span>
               </>
             )}
             <time
@@ -105,7 +108,9 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
                 year: "numeric",
               })}
             </time>
-            <span className="text-[var(--color-text-secondary)]">·</span>
+            <span className="text-sm text-[var(--color-text-secondary)]">
+              ·
+            </span>
             <span className="text-sm text-[var(--color-text-secondary)]">
               {post.readingTime} min read
             </span>

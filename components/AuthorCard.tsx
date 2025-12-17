@@ -13,13 +13,14 @@ export default function AuthorCard({
 }: AuthorCardProps) {
   return (
     <div className="flex items-start gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-6">
-      <Image
-        src={author.avatar}
-        alt={author.name}
-        width={64}
-        height={64}
-        className="rounded-full"
-      />
+      <div className="relative h-16 w-16 flex-shrink-0">
+        <Image
+          src={author.avatar}
+          alt={author.name}
+          fill
+          className="rounded-full object-cover"
+        />
+      </div>
       <div className="flex-1">
         <h3 className="font-semibold text-[var(--color-text)]">
           {author.name}

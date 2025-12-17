@@ -107,7 +107,7 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.description}
           </p>
 
-          <div className="mt-6 flex items-start gap-4 flex-wrap">
+          <div className="mt-6 flex items-center gap-4 flex-wrap">
             {authors.length > 0 && (
               <div className="flex items-center gap-3">
                 {authors.map((author, index) => (
@@ -117,13 +117,14 @@ export default async function PostPage({ params }: PostPageProps) {
                   >
                     {author && (
                       <>
-                        <Image
-                          src={author.avatar}
-                          alt={author.name}
-                          width={48}
-                          height={48}
-                          className="rounded-full"
-                        />
+                        <div className="relative h-12 w-12 flex-shrink-0">
+                          <Image
+                            src={author.avatar}
+                            alt={author.name}
+                            fill
+                            className="rounded-full object-cover"
+                          />
+                        </div>
                         <div>
                           <p className="font-medium text-[var(--color-text)]">
                             {author.name}
@@ -132,7 +133,7 @@ export default async function PostPage({ params }: PostPageProps) {
                       </>
                     )}
                     {index < authors.length - 1 && (
-                      <span className="text-[var(--color-text-secondary)] font-medium">
+                      <span className="text-sm text-[var(--color-text-secondary)] font-medium">
                         &
                       </span>
                     )}
@@ -140,18 +141,23 @@ export default async function PostPage({ params }: PostPageProps) {
                 ))}
               </div>
             )}
-            <div className="flex-1 min-w-[200px]">
-              <p className="text-sm text-[var(--color-text-secondary)]">
-                <time dateTime={post.date}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </time>
-                <span className="mx-2">·</span>
+            <div className="flex items-center gap-2">
+              <time
+                dateTime={post.date}
+                className="text-sm text-[var(--color-text-secondary)]"
+              >
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+              <span className="text-sm text-[var(--color-text-secondary)]">
+                ·
+              </span>
+              <span className="text-sm text-[var(--color-text-secondary)]">
                 {post.readingTime} min read
-              </p>
+              </span>
             </div>
           </div>
         </header>
