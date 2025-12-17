@@ -7,7 +7,9 @@ const authors: Record<string, Author> = {
     bio: "Security researcher and blogger sharing insights on cybersecurity and technology.",
     avatar: "/images/authors/amey.jpeg",
     social: {
-      linkedin: "https://www.linkedin.com/in/amey-pathak/",
+      twitter: "ap425q",
+      github: "ap425q",
+      linkedin: "amey-pathak",
     },
   },
   "tanu-chauhan": {
@@ -16,7 +18,7 @@ const authors: Record<string, Author> = {
     bio: "Contributor to cybersecurity research and technical writing.",
     avatar: "/images/authors/tanu.jpeg",
     social: {
-      linkedin: "https://www.linkedin.com/in/tanu-chauhan-741b01230/",
+      linkedin: "tanu-chauhan-741b01230",
     },
   },
 }
