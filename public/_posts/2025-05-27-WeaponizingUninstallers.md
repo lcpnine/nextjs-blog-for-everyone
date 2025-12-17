@@ -116,4 +116,3 @@ This technique doesn’t rely on user interaction beyond clicking "Uninstall." I
 ## What Next !?
 I’ll be exploring how other popular software handles uninstallation, Would love to hear your thoughts. Have you ever looked at what your uninstallers are really doing?
 
-{% include comment.html %}
