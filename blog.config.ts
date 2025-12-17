@@ -30,16 +30,16 @@ const config: BlogConfig = {
   // Giscus configuration for comments
   // Get these values from https://giscus.app
   giscus: {
-    repo: "yourusername/yourrepo", // e.g., "john-doe/my-blog"
-    repoId: "your-repo-id",
-    category: "Announcements",
-    categoryId: "your-category-id",
+    repo: "lcpnine/amey-blog",
+    repoId: "R_kgDOQqQT-Q",
+    category: "General",
+    categoryId: "DIC_kwDOQqQT-c4Cz6Gr",
     mapping: "pathname",
     reactionsEnabled: true,
     emitMetadata: false,
     inputPosition: "bottom",
     theme: "preferred_color_scheme",
-    lang: "en",
+    lang: "ko",
   },
 
   // Posts per page for pagination
