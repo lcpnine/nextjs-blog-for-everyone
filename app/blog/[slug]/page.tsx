@@ -162,19 +162,6 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         </header>
 
-        {/* Featured Image */}
-        {post.image && (
-          <div className="relative mb-12 aspect-video overflow-hidden rounded-xl">
-            <Image
-              src={post.image}
-              alt={post.imageAlt || post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
         {/* Content */}
         <div className="prose-container">
           <Markdown content={post.content} />

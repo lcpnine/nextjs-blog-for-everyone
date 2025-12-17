@@ -92,7 +92,7 @@ export function generateMetadata(options: GenerateMetadataOptions): Metadata {
 }
 
 export function generatePostMetadata(post: Post): Metadata {
-  const author = getAuthor(post.author)
+  const author = getAuthor(post.authors?.[0] || "")
 
   return generateMetadata({
     title: post.title,
@@ -108,14 +108,15 @@ export function generatePostMetadata(post: Post): Metadata {
 }
 
 export function generateBlogPostingSchema(post: Post) {
-  const author = getAuthor(post.author)
+  const author = getAuthor(post.authors?.[0] || "")
+  const postImage = post.image || "/images/og-default.jpg"
 
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
-    image: post.image ? `${config.site.url}${post.image}` : undefined,
+    image: `${config.site.url}${postImage}`,
     datePublished: post.date,
     dateModified: post.date,
     author: author

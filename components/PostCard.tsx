@@ -13,6 +13,10 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
     .map((authorId) => getAuthor(authorId))
     .filter(Boolean)
 
+  // Use default image if no image is specified
+  const displayImage = post.image || "/images/og-default.jpg"
+  const displayImageAlt = post.imageAlt || post.title
+
   return (
     <article
       className={`group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] transition-shadow hover:shadow-lg ${
@@ -20,20 +24,18 @@ export default function PostCard({ post, featured = false }: PostCardProps) {
       }`}
     >
       <Link href={`/blog/${post.slug}`} className="block">
-        {post.image && (
-          <div
-            className={`relative overflow-hidden rounded-t-xl ${
-              featured ? "h-64 sm:h-80" : "h-48"
-            }`}
-          >
-            <Image
-              src={post.image}
-              alt={post.imageAlt || post.title}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-        )}
+        <div
+          className={`relative overflow-hidden rounded-t-xl ${
+            featured ? "h-64 sm:h-80" : "h-48"
+          }`}
+        >
+          <Image
+            src={displayImage}
+            alt={displayImageAlt}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
 
         <div className="p-6">
           {post.tags && post.tags.length > 0 && (

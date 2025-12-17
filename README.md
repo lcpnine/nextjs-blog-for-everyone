@@ -279,8 +279,8 @@ const code = "highlighted";
 | `date` | string | No* | Publication date (YYYY-MM-DD). Extracted from filename if not provided. |
 | `authors` | string[] | No | Array of author IDs from `lib/authors.ts`. Supports multiple authors. |
 | `tags` | string[] | No | Array of tags for categorization |
-| `image` | string | No | Featured image path |
-| `imageAlt` | string | No | Alt text for the image |
+| `image` | string | No | Cover image path (shown in blog listing & social sharing). If not specified, uses default OG image. |
+| `imageAlt` | string | No | Alt text for the cover image |
 | `featured` | boolean | No | Show in featured section |
 | `draft` | boolean | No | Hide from production build |
 | `layout` | string | No | `"default"`, `"wide"`, or `"full"` |
@@ -439,8 +439,10 @@ Structured data for:
 
 - Place post images in `public/images/posts/`
 - Place author avatars in `public/images/authors/`
-- Recommended size for featured images: 1200x630px
+- Recommended size for cover images: 1200x630px
 - Use descriptive filenames for SEO
+- **Note:** The `image` field in frontmatter is used as a cover image in blog listings and for social sharing (OpenGraph). It won't be displayed at the top of individual blog posts.
+- If no image is specified, the default OG image (`og-default.jpg`) will be used for the cover
 
 ### Performance
 
