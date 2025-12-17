@@ -1,8 +1,12 @@
 ---
-title:  "Fuzzing 101"
+title: "Fuzzing 101"
+description: "A comprehensive introduction to fuzzing techniques and methodologies for vulnerability research."
+date: "2024-10-24"
 published: false
-tag: Security
-category: Exploit Development
+authors: [Amey]
+tags: [Security, Fuzzing, Exploit Development]
+image: "/images/posts/syncbrs.png"
+imageAlt: "Fuzzing Diagram"
 ---
 
 This blog documents my notes and learnings from my journey to learn fuzzing.

@@ -1,6 +1,10 @@
 ---
-title:  "Hello World!"
+title: "Hello World!"
+description: "Welcome to my first blog post!"
+date: "2024-04-11"
 published: false
+authors: [Amey]
+tags: [General]
 ---
 
 # Welcome

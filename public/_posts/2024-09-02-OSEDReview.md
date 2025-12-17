@@ -1,9 +1,13 @@
 ---
-title:  "My Offensive Security OSED Review"
+title: "My Offensive Security OSED Review"
+description: "A comprehensive review of the OSED certification journey, from preparation to passing the exam at age 19."
+date: "2024-09-02"
 published: true
-tag: Security
-category: Course Review
-author : Amey
+authors: [Amey]
+tags: [Security, OSED, Certification, Exploit Development]
+image: "/images/posts/osed.png"
+imageAlt: "OSED Certification"
+featured: false
 ---
 ## The Breakthrough
 

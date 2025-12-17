@@ -1,9 +1,13 @@
 ---
-title:  "Weaponizing Uninstallers! A new attack surface?"
+title: "Weaponizing Uninstallers! A new attack surface?"
+description: "Exploring a novel attack vector by backdooring software uninstallers - a blind spot in security monitoring that runs with elevated privileges."
+date: "2025-05-27"
 published: true
-tag: Security
-authors: [Amey,Tanu]
-category: Security Research
+authors: [Amey, Tanu]
+tags: [Security, Malware, Research]
+image: "/images/posts/Uninstall-7zip.png"
+imageAlt: "7-Zip Uninstall Dialog"
+featured: true
 ---
 ## Backstory
 
